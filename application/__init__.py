@@ -10,6 +10,6 @@ db = SQLAlchemy(app)
 
 from application import views
 
-from application.quizzes import models
+from application.questions import models
 
 db.create_all()
