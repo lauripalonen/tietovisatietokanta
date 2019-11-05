@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('question_create') }}">
+  <input type="text" question="question"/>
+  <input type="text" answer="answer"/>
+  <input type="submit" value="Add a new task"/>
+</form>
+{% endblock %}
