@@ -1,9 +1,11 @@
 {% extends "layout.html" %}
   
 {% block body %}
-<form method="POST" action="{{ url_for('question_create') }}">
-  <input type="text" question="question"/>
-  <input type="text" answer="answer"/>
-  <input type="submit" value="Add a new task"/>
+<form method="POST" action="{{ url_for('questions_create') }}">
+  <input type="text" name="question"/>
+  <input type="text" name="answer"/>
+  <input type="checkbox" name="answeredCorrectly">Answered correctly
+  <br><br>
+  <input type="submit" value="Add a new question"/>
 </form>
 {% endblock %}
