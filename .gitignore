@@ -124,6 +124,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# uml-url
+# other
 documentation/uml-url
 quizlog.db
+.vscode/
