@@ -1,5 +1,10 @@
-# tietovisatietokanta
+# Quiz log
 
-Tietovisatietokanta on apuväline säännöllisesti visailuun osallistuvalle joukkueelle. Joukkueen jäsenet voivat luoda tietokantaan omat tunnukset, ja lisätä kohtaamiaan tietovisakysymyksiä kantaan. Kysymyksille annetaan oikeat vastaukset, kategoria(t), ajankohta jolloin kysymys on esitetty, ja vastasiko joukkue kysymykseen oikein. Kyseessä on siis eräänlainen kysymys-backlog, josta joukkue voi reflektoida omaa menestystään, ja pohtia esimerkiksi missä kysymyskategoriassa se voisi vielä kehittyä.
+Quiz log on kirjanpitoväline tietovisajoukkueille visailukysymysten tallentamiseksi. Sovelluksessa voi ylläpitää tietovisakysymyksiin liittyvää tietoa (esitetty kysymys, vastaus, kysymyskategoria, esitys ajankohta ja onko joukkue vastannut kysymykseen oikein). Tallennetusta tiedosta voi koostaa yhteenvetoja, joista joukkue voi reflektoida omaa menestystään esimerkiksi tietyissä kysymyskategoriassa tai eri ajankohtina.
 
-Tietokantaan tehtävillä kyselyillä voi esimerkiksi hakea kaikki kysymykset tietyn kategorian alta, selvittää useiten ja vähiten esiintyvät kategoriat ja joukkueelle helpoimmat ja vaikeimmat kategoriat.
+## Heroku
+Heroku-julkaisu: https://quizlog.herokuapp.com
+
+## Dokumentaatio
+[Tietokantakaavio](/documentation/tvtk-uml.png)  
+[User stories](/documentation/userstories.md)
