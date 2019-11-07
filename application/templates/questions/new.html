@@ -2,10 +2,27 @@
   
 {% block body %}
 <form method="POST" action="{{ url_for('questions_create') }}">
-  <input type="text" name="question"/>
-  <input type="text" name="answer"/>
-  <input type="checkbox" name="answeredCorrectly">Answered correctly
-  <br><br>
+  <table>
+    <tr>
+      <td>
+        <strong>Question</strong>
+      </td>
+      <td>
+        <strong>Answer</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="text" name="question"/>
+      </td>
+      <td>
+        <input type="text" name="answer"/>
+      </td>
+      <td>
+        <input type="checkbox" name="answeredCorrectly">Answered correctly
+      </td>        
+    </tr>
+  </table>
   <input type="submit" value="Add a new question"/>
 </form>
 {% endblock %}
