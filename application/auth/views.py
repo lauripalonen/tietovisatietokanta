@@ -41,7 +41,7 @@ def auth_signup():
   if user:
     return render_template("auth/signupform.html", form=form, error="Username already exists")
 
-  new_user = User(username=username, password=password)
+  new_user = User(username=username, password=bcrypt.generate_password_hash(password))
 
   db.session().add(new_user)
   db.session().commit()
