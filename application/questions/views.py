@@ -1,6 +1,8 @@
-from application import app, db
 from flask import redirect, render_template, request, url_for
+
+from application import app, db
 from application.questions.models import Question
+from application.questions.forms import QuestionForm, EditForm
 
 @app.route("/questions/", methods=["GET"])
 def questions_index():
@@ -8,33 +10,33 @@ def questions_index():
 
 @app.route("/questions/new/")
 def questions_form():
-  return render_template("questions/new.html")
+  return render_template("questions/new.html", form = QuestionForm())
 
 @app.route("/questions/<question_id>", methods=["GET"])
 def edit_form(question_id):
   q = Question.query.get(question_id)
   c = "checked" if q.answeredCorrectly == True else ""
-  return render_template("questions/edit.html", question=q, checked=c)
+  return render_template("questions/edit.html", question=q, checked=c, form = EditForm())
 
 @app.route("/questions/<question_id>", methods=["POST"])
 def questions_update(question_id):
   q = Question.query.get(question_id)
-  q.question = request.form.get("question")
-  q.answer = request.form.get("answer")
-  c = (request.form.get("answeredCorrectly") != None)
-  q.answeredCorrectly = c
+  form = EditForm(request.form)
+  
+  q.question = form.question.data
+  q.answer = form.answer.data
+  q.answeredCorrectly = form.correct.data
   db.session().commit()
 
   return redirect(url_for("questions_index"))
 
 @app.route("/questions/", methods=["POST"])
 def questions_create():
-  q = request.form.get("question")
-  a = request.form.get("answer")
-  c = (request.form.get("answeredCorrectly") != None)
-  qObject = Question(question=q, answer=a, answeredCorrectly = c)
+  form = QuestionForm(request.form)
 
-  db.session().add(qObject)
+  q = Question(form.question.data, form.answer.data, form.correct.data)
+
+  db.session().add(q)
   db.session().commit()
 
   return redirect(url_for("questions_index"))

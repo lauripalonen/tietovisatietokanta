@@ -3,25 +3,24 @@
 {% block body %}
   <table>
     <tr>
-      <td><strong>Question</strong></td>
-      <td><strong>Answer</strong></td>
-      <td><strong>Answered correctly</strong></td>
+      <td><strong>{{ form.question.label }}</strong></td>
+      <td><strong>{{ form.answer.label }}</strong></td>
+      <td><strong>{{ form.correct.label }}</strong></td>
     </tr>
     <tr>
       <form method="POST" action="{{ url_for('questions_update', question_id=question.id) }}">
         <td>
-          <input type="text" name="question" value="{{ question.question }}"/>
+          {{ form.question(value=question.question) }}
         </td>
         <td>
-          <input type="text" name="answer" value="{{ question.answer }}"/>
-        </td>
-        <td style="text-align:center">
-          <input type="checkbox" name="answeredCorrectly" {{ checked }}/>
+          {{ form.answer(value=question.answer) }}
         </td>
         <td>
-          <input type="submit" value="update"/>
+          {{ form.correct(checked=question.answeredCorrectly) }}
         </td>
-      </form>
+      
     </tr>
   </table>
+  <input type="submit" value="update"/>
+</form>
 {% endblock %}
