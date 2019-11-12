@@ -7,7 +7,7 @@ def questions_index():
   return render_template("questions/list.html", questions = Question.query.all())
 
 @app.route("/questions/new/")
-def question_form():
+def questions_form():
   return render_template("questions/new.html")
 
 @app.route("/questions/<question_id>", methods=["GET"])
