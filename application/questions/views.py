@@ -34,6 +34,9 @@ def questions_update(question_id):
 def questions_create():
   form = QuestionForm(request.form)
 
+  if not form.validate():
+    return render_template("questions/new.html", form = form)
+
   q = Question(form.question.data, form.answer.data, form.correct.data)
 
   db.session().add(q)

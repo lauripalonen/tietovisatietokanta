@@ -27,5 +27,13 @@
     </tr>
   </table>
   <input type="submit" value="Add a new question"/>
+  <ul>
+      {% for error in form.question.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+      {% for error in form.answer.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
 </form>
 {% endblock %}
