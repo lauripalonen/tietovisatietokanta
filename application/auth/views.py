@@ -12,11 +12,15 @@ def auth_login():
 
     form = LoginForm(request.form)
 
-    user = User.query.filter_by(
-        username=form.username.data, password=form.password.data).first()
+    user = User.query.filter_by(username=form.username.data).first()
+    
     if not user:
         return render_template("auth/loginform.html", form=form,
-                               error="No such username or password")
+                               error="No such username")
+
+    if not bcrypt.check_password_hash(user.password, form.password.data):
+        return render_template("auth/loginform.html", form=form,
+                               error="Incorrect password")
 
     login_user(user)
     return redirect(url_for("index"))
@@ -34,16 +38,16 @@ def auth_signup():
   form = SignupForm(request.form)
 
   username = form.username.data
-  password = form.password.data
-
+  password = bcrypt.generate_password_hash(form.password.data)
   user = User.query.filter_by(username=username).first()
 
   if user:
     return render_template("auth/signupform.html", form=form, error="Username already exists")
 
-  new_user = User(username=username, password=bcrypt.generate_password_hash(password))
+  new_user = User(username=username, password=password)
 
   db.session().add(new_user)
   db.session().commit()
 
+  login_user(new_user)
   return redirect(url_for("index"))
