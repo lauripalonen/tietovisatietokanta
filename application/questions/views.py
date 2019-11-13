@@ -1,24 +1,29 @@
 from flask import redirect, render_template, request, url_for
+from flask_login import login_required
 
 from application import app, db
 from application.questions.models import Question
 from application.questions.forms import QuestionForm, EditForm
 
 @app.route("/questions/", methods=["GET"])
+@login_required
 def questions_index():
   return render_template("questions/list.html", questions = Question.query.all())
 
 @app.route("/questions/new/")
+@login_required
 def questions_form():
   return render_template("questions/new.html", form = QuestionForm())
 
 @app.route("/questions/<question_id>", methods=["GET"])
+@login_required
 def edit_form(question_id):
   q = Question.query.get(question_id)
   c = "checked" if q.answeredCorrectly == True else ""
   return render_template("questions/edit.html", question=q, checked=c, form = EditForm())
 
 @app.route("/questions/<question_id>", methods=["POST"])
+@login_required
 def questions_update(question_id):
   q = Question.query.get(question_id)
   form = EditForm(request.form)
@@ -31,6 +36,7 @@ def questions_update(question_id):
   return redirect(url_for("questions_index"))
 
 @app.route("/questions/", methods=["POST"])
+@login_required
 def questions_create():
   form = QuestionForm(request.form)
 
