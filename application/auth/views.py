@@ -12,15 +12,15 @@ def auth_login():
 
     form = LoginForm(request.form)
 
-    user = User.query.filter_by(username=form.username.data).first()
+    user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
     
     if not user:
         return render_template("auth/loginform.html", form=form,
                                error="No such username")
 
-    if not bcrypt.check_password_hash(user.password, form.password.data):
-        return render_template("auth/loginform.html", form=form,
-                               error="Incorrect password")
+    # if not bcrypt.check_password_hash(user.password, form.password.data):
+    #     return render_template("auth/loginform.html", form=form,
+    #                            error="Incorrect password")
 
     login_user(user)
     return redirect(url_for("index"))
@@ -40,7 +40,7 @@ def auth_signup():
     return render_template("auth/signupform.html", form = form, error="Username or password too short")
 
   username = form.username.data
-  password = bcrypt.generate_password_hash(form.password.data)
+  password = form.password.data
   user = User.query.filter_by(username=username).first()
 
   if user:
