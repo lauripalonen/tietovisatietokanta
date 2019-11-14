@@ -9,3 +9,16 @@ https://quizlog.herokuapp.com
 ## Dokumentaatio
 [Tietokantakaavio](/documentation/tvtk-uml.png)  
 [User stories](/documentation/userstories.md)
+
+## Testitunnukset
+Sovellukseen pääsee kirjautumaan seuraavilla tunnuksilla:  
+käyttäjänimi: test_user  
+salasana: test_pw  
+
+## Huomioita
+### salaus
+Paikallisesta versiosta poiketen Heroku-versiossa ei tällä hetkellä ole salasanojen kryptausta! Herokussa salasanat siis tallentuvat selkokielisinä tietokantaan, joten **ÄLÄ KÄYTÄ REKISTERÖITYIMSEEN ARKALUONTESIA SALASANOJA!**  
+
+### tiimit
+Tiimeihin liittyvät toiminnallisuudet ovat vielä kehityksessä, eivätkä tällä hetkellä toteuta vielä oleellisia toimintoja.
+
