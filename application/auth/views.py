@@ -36,6 +36,8 @@ def auth_signup():
       return render_template("auth/signupform.html", form = SignupForm())
 
   form = SignupForm(request.form)
+  if not form.validate():
+    return render_template("auth/signupform.html", form = form, error="Username or password too short")
 
   username = form.username.data
   password = bcrypt.generate_password_hash(form.password.data)
