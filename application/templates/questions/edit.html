@@ -18,9 +18,11 @@
         <td>
           {{ form.correct(checked=question.answeredCorrectly) }}
         </td>
-      
     </tr>
   </table>
   <input type="submit" value="update"/>
+</form>
+<form method="POST" action="{{ url_for('questions_delete', question_id=question.id) }}">
+  <input type="submit" value="delete"/>
 </form>
 {% endblock %}
