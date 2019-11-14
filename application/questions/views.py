@@ -1,52 +1,68 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from application import app, db
 from application.questions.models import Question
 from application.questions.forms import QuestionForm, EditForm
 
+
 @app.route("/questions/", methods=["GET"])
 @login_required
 def questions_index():
-  return render_template("questions/list.html", questions = Question.query.all())
+    return render_template("questions/list.html", questions=Question.query.all())
+
 
 @app.route("/questions/new/")
 @login_required
 def questions_form():
-  return render_template("questions/new.html", form = QuestionForm())
+    return render_template("questions/new.html", form=QuestionForm())
+
 
 @app.route("/questions/<question_id>", methods=["GET"])
 @login_required
 def edit_form(question_id):
-  q = Question.query.get(question_id)
-  c = "checked" if q.answeredCorrectly == True else ""
-  return render_template("questions/edit.html", question=q, checked=c, form = EditForm())
+    q = Question.query.get(question_id)
+    c = "checked" if q.answeredCorrectly == True else ""
+    return render_template("questions/edit.html", question=q, checked=c, form=EditForm())
+
 
 @app.route("/questions/<question_id>", methods=["POST"])
 @login_required
 def questions_update(question_id):
-  q = Question.query.get(question_id)
-  form = EditForm(request.form)
-  
-  q.question = form.question.data
-  q.answer = form.answer.data
-  q.answeredCorrectly = form.correct.data
-  db.session().commit()
+    q = Question.query.get(question_id)
+    form = EditForm(request.form)
 
-  return redirect(url_for("questions_index"))
+    q.question = form.question.data
+    q.answer = form.answer.data
+    q.answeredCorrectly = form.correct.data
+    db.session().commit()
+
+    return redirect(url_for("questions_index"))
+
 
 @app.route("/questions/", methods=["POST"])
 @login_required
 def questions_create():
-  form = QuestionForm(request.form)
+    form = QuestionForm(request.form)
 
-  if not form.validate():
-    return render_template("questions/new.html", form = form)
+    if not form.validate():
+        return render_template("questions/new.html", form=form)
 
-  q = Question(form.question.data, form.answer.data, form.correct.data)
+    q = Question(form.question.data, form.answer.data, form.correct.data)
+    q.team_id = current_user.team_id
 
-  db.session().add(q)
+    db.session().add(q)
+    db.session().commit()
+
+    return redirect(url_for("questions_index"))
+
+@app.route("/questions/<question_id>/delete", methods=["POST"])
+@login_required
+def questions_delete(question_id):
+  q = Question.query.get(question_id)
+  db.session().delete(q)
   db.session().commit()
 
-  return redirect(url_for("questions_index"))
+  print("Question deleted!")
 
+  return redirect(url_for("questions_index"))
