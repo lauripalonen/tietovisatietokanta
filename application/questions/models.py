@@ -13,6 +13,8 @@ class Question(db.Model):
     answeredCorrectly = db.Column(db.Boolean)
     quizDate = db.Column(db.DateTime)
 
+    team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
+
     def __init__(self, question, answer, answeredCorrectly):
         self.question = question
         self.answer = answer
