@@ -11,7 +11,7 @@ class User(db.Model):
 
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
-#    team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
+    team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
 
     def __init__(self, username, password):
         self.username = username
