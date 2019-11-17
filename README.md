@@ -7,7 +7,7 @@ Heroku-julkaisu:
 https://quizlog.herokuapp.com
 
 ## Dokumentaatio
-[Tietokantakaavio](/documentation/tvtk-uml.png)  
+[Tietokantakaavio](/documentation/uml-chart.png)  
 [User stories](/documentation/userstories.md)
 
 ## Testitunnukset
