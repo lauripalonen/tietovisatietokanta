@@ -34,6 +34,7 @@ def questions_update(question_id):
 
     q.question = form.question.data
     q.answer = form.answer.data
+    q.category = form.category.data
     q.answeredCorrectly = form.correct.data
     db.session().commit()
 
@@ -48,7 +49,7 @@ def questions_create():
     if not form.validate():
         return render_template("questions/new.html", form=form)
 
-    q = Question(form.question.data, form.answer.data, form.correct.data)
+    q = Question(form.question.data, form.answer.data, form.category.data, form.correct.data)
     q.team_id = current_user.team_id
 
     db.session().add(q)

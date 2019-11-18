@@ -15,7 +15,8 @@ class Question(db.Model):
 
     team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
 
-    def __init__(self, question, answer, answeredCorrectly):
+    def __init__(self, question, answer, category, answeredCorrectly):
         self.question = question
         self.answer = answer
+        self.category = category
         self.answeredCorrectly = answeredCorrectly

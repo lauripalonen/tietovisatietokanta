@@ -5,6 +5,7 @@
     <tr>
       <td><strong>{{ form.question.label }}</strong></td>
       <td><strong>{{ form.answer.label }}</strong></td>
+      <td><strong>{{ form.category.label }}</strong></td>
       <td><strong>{{ form.correct.label }}</strong></td>
     </tr>
     <tr>
@@ -14,6 +15,9 @@
         </td>
         <td>
           {{ form.answer(value=question.answer) }}
+        </td>
+        <td>
+          {{ form.category(value=question.category) }}
         </td>
         <td>
           {{ form.correct(checked=question.answeredCorrectly) }}

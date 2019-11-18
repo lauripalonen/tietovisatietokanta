@@ -11,6 +11,9 @@
         <strong>{{ form.answer.label }}</strong>
       </td>
       <td>
+        <strong>{{ form.category.label }}</strong>
+      </td>
+      <td>
         <strong>{{ form.correct.label }}</strong>
       </td>
     </tr>
@@ -22,8 +25,11 @@
         {{ form.answer }}
       </td>
       <td>
+        {{ form.category }}
+      </td>
+      <td>
         {{ form.correct }}
-      </td>        
+      </td>       
     </tr>
   </table>
   <input type="submit" value="Add a new question"/>
