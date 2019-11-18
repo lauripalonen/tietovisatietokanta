@@ -10,7 +10,7 @@
     <p>
       Logged in as {{ current_user.username }}. <a href="{{ url_for('auth_logout') }}">Logout</a>
       <br/>
-      Team: {{ current_user.team_id }}
+      Representing team "{{ current_user.team_id }}"
     </p>
     {% else %}
     <a href="{{ url_for('auth_login') }}">Login</a>
@@ -19,7 +19,9 @@
     <ul>
       <li><a href="{{ url_for('questions_index') }}">List questions</a></li>
       <li><a href="{{ url_for('questions_form') }}">Add a question</a></li>
+      {% if current_user.is_authenticated %}
       <li><a href="{{ url_for('teams_form') }}">Manage teams</a></li>
+      {% endif %}
     </ul>
     {% block body %}
       <p>
