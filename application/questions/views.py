@@ -5,6 +5,8 @@ from application import app, db
 from application.questions.models import Question
 from application.questions.forms import QuestionForm, EditForm
 
+from application.teams.models import Team
+
 
 @app.route("/questions/", methods=["GET"])
 @login_required
@@ -49,8 +51,12 @@ def questions_create():
     if not form.validate():
         return render_template("questions/new.html", form=form)
 
-    q = Question(form.question.data, form.answer.data, form.category.data, form.correct.data)
-    q.team_id = current_user.team_id
+    q = Question(
+      form.question.data,
+      form.answer.data,
+      form.category.data,
+      form.correct.data,
+      current_user.team_id)
 
     db.session().add(q)
     db.session().commit()
