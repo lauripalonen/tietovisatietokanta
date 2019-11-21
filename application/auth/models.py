@@ -14,7 +14,7 @@ class User(db.Model):
     password = db.Column(db.String(144), nullable=False)
     team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
 
-    teams = db.relationship('Team', secondary="user_team", backref=db.backref('userinos', lazy=True))
+    teams = db.relationship('Team', secondary="user_team", backref=db.backref('members', lazy=True))
 
     def __init__(self, username, password):
         self.username = username
