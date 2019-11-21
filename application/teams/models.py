@@ -12,7 +12,7 @@ class Team(db.Model):
     name = db.Column(db.String(144), nullable=False)
 
     questions = db.relationship("Question", backref="team", lazy=True)
-    users = db.relationship("User", secondary="user_team", backref=db.backref('teamos', lazy=True))
+    users = db.relationship("User", secondary="user_team", backref=db.backref('user_teams', lazy=True))
 
     def __init__(self, name):
         self.name = name
