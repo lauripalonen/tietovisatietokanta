@@ -42,7 +42,7 @@ class Question(db.Model):
     @staticmethod
     def find_hardest_category(team_id):
         stmt = text("SELECT MIN(avg_answeredCorrectly) AS average, category"
-                    " FROM (SELECT AVG(answeredCorrectly) AS avg_answeredCorrectly,"
+                    " FROM (SELECT AVG(question.answeredCorrectly) AS avg_answeredCorrectly,"
                     " category FROM Question WHERE team_id=:team_id"
                     " GROUP BY category) AS avg_answers").params(team_id=team_id)
 
