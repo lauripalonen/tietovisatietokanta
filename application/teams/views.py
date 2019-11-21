@@ -28,7 +28,7 @@ def teams_form():
     db.session().add(new_team)
 
     user = User.query.filter_by(username=current_user.username).first()
-    new_team.userinos.append(user)
+    new_team.members.append(user)
 
     team_id = Team.query.filter_by(name=name).first().id
     current_user.team_id = team_id
