@@ -1,4 +1,5 @@
 from application import db
+from application import user_team
 
 class User(db.Model):
 
@@ -12,6 +13,8 @@ class User(db.Model):
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
     team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
+
+    teams = db.relationship('Team', secondary="user_team", backref=db.backref('userinos', lazy=True))
 
     def __init__(self, username, password):
         self.username = username
