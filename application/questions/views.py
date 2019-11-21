@@ -11,8 +11,15 @@ from application.teams.models import Team
 @app.route("/questions/", methods=["GET"])
 @login_required
 def questions_index():
-    return render_template("questions/list.html",
-                           questions=Question.query.filter_by(team_id=current_user.team_id))
+    team = current_user.team_id
+    questions = Question.query.filter_by(team_id=current_user.team_id)
+
+    if (team and questions.first()):
+        return render_template("questions/list.html",
+                               questions=questions,
+                               hardest_category=Question.find_hardest_category(team_id=team))
+
+    return redirect(url_for("index"))
 
 
 @app.route("/questions/new/")
@@ -53,24 +60,25 @@ def questions_create():
         return render_template("questions/new.html", form=form)
 
     q = Question(
-      form.question.data,
-      form.answer.data,
-      form.category.data,
-      form.correct.data,
-      current_user.team_id)
+        form.question.data,
+        form.answer.data,
+        form.category.data,
+        form.correct.data,
+        current_user.team_id)
 
     db.session().add(q)
     db.session().commit()
 
     return redirect(url_for("questions_index"))
 
+
 @app.route("/questions/<question_id>/delete", methods=["POST"])
 @login_required
 def questions_delete(question_id):
-  q = Question.query.get(question_id)
-  db.session().delete(q)
-  db.session().commit()
+    q = Question.query.get(question_id)
+    db.session().delete(q)
+    db.session().commit()
 
-  print("Question deleted!")
+    print("Question deleted!")
 
-  return redirect(url_for("questions_index"))
+    return redirect(url_for("questions_index"))
