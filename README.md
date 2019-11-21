@@ -5,7 +5,7 @@ Quiz log on kirjanpitoväline tietovisajoukkueille visailukysymysten tallentamis
 ## Heroku
 Heroku-julkaisu:  
 https://quizlog.herokuapp.com  
-(Huom! Salasanat tallentuvat heroku-julkaisussa selkokielisinä. Älä käytä arkaluonteisia salasanoja!)  
+(Huom! Salasanat tallentuvat heroku-julkaisussa selkokielisinä. **ÄLÄ KÄYTÄ ARKALUONTEISIA SALASANOJA!**)  
 
 ## Dokumentaatio
 [Tietokantakaavio](/documentation/uml-chart.png)  
@@ -16,10 +16,12 @@ Sovellukseen pääsee kirjautumaan seuraavilla tunnuksilla:
 käyttäjänimi: test_user  
 salasana: test_pw  
 
-## Huomioita
-### salaus
-Paikallisesta versiosta poiketen Heroku-versiossa ei tällä hetkellä ole salasanojen kryptausta! Herokussa salasanat siis tallentuvat selkokielisinä tietokantaan, joten **ÄLÄ KÄYTÄ REKISTERÖITYMISEEN ARKALUONTESIA SALASANOJA!**  
+## Toiminnot
+[User stories](/documentation/userstories.md) -dokumentissa on kuvattu sovelluksen suunnitellut toiminnallisuudet. Jo julkaistuja toimintoja:  
+- sisään- ja uloskirjautuminen, sekä rekisteröityminen
+- uuden tiimin luominen tai olemassa olevaan liittyminen (rekisteröitymislomakkeella)
+- kysymysten luonti, editointi ja poisto
+- kysymysten listaaminen
+- Tiimin vaikeimman kysymyskategorian näyttö
 
-### tiimit
-Tiimeihin liittyvät toiminnallisuudet ovat vielä kehityksessä, eivätkä tällä hetkellä toteuta vielä oleellisia toimintoja.
 
