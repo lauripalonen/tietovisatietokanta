@@ -25,7 +25,7 @@ class Question(db.Model):
 
     @staticmethod
     def find_correct_answers_by_category(category):
-        stmt = text("SELECT COUNT(Question.id) as count FROM Question"
+        stmt = text("SELECT COUNT(Question.id) AS count FROM Question"
                     " WHERE answeredCorrectly = 1"
                     " AND category ='\:category'").params(category=category)
 
@@ -41,10 +41,10 @@ class Question(db.Model):
     
     @staticmethod
     def find_hardest_category(team_id):
-        stmt = text("SELECT MIN(avg_answeredCorrectly) as average, category"
-                    " FROM (SELECT AVG(answeredCorrectly) as avg_answeredCorrectly,"
+        stmt = text("SELECT MIN(avg_answeredCorrectly) AS average, category"
+                    " FROM (SELECT AVG(answeredCorrectly) AS avg_answeredCorrectly,"
                     " category FROM Question WHERE team_id=:team_id"
-                    " GROUP BY category) as avg_answers").params(team_id=team_id)
+                    " GROUP BY category) AS avg_answers").params(team_id=team_id)
 
         ResultProxy = db.engine.execute(stmt)
 
