@@ -11,7 +11,8 @@ from application.teams.models import Team
 @app.route("/questions/", methods=["GET"])
 @login_required
 def questions_index():
-    return render_template("questions/list.html", questions=Question.query.all())
+    return render_template("questions/list.html",
+                           questions=Question.query.filter_by(team_id=current_user.team_id))
 
 
 @app.route("/questions/new/")
