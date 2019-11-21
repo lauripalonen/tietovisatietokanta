@@ -1,5 +1,6 @@
 from application import db
 
+from sqlalchemy.sql import text
 
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -21,3 +22,19 @@ class Question(db.Model):
         self.category = category
         self.answeredCorrectly = answeredCorrectly
         self.team_id  = team_id
+
+    @staticmethod
+    def find_correct_answers_by_category(category):
+        stmt = text("SELECT COUNT(Question.id) FROM Question"
+                    " WHERE answeredCorrectly = 1"
+                    ' AND category = "Universe"')
+
+        res = db.engine.execute(stmt)
+
+        print("RESPONSE FOR QUERY: " + res)
+
+        response = []
+        for row in res:
+            response.append({"count: ":row[0]})
+        
+        return response
