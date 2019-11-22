@@ -12,7 +12,7 @@ https://quizlog.herokuapp.com
 [User stories](/documentation/userstories.md)
 
 ## Testitunnukset
-Sovellukseen pääsee kirjautumaan seuraavilla tunnuksilla:  
+Heroku-sovellukseen pääsee kirjautumaan seuraavilla tunnuksilla:  
 käyttäjänimi: test_user  
 salasana: test_pw  
 
