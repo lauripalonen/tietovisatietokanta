@@ -32,7 +32,7 @@ def questions_form():
 @login_required
 def edit_form(question_id):
     q = Question.query.get(question_id)
-    c = "checked" if q.answeredCorrectly == True else ""
+    c = "checked" if q.answered_correctly == True else ""
     return render_template("questions/edit.html", question=q, checked=c, form=EditForm())
 
 
@@ -45,7 +45,7 @@ def questions_update(question_id):
     q.question = form.question.data
     q.answer = form.answer.data
     q.category = form.category.data
-    q.answeredCorrectly = form.correct.data
+    q.answered_correctly = form.correct.data
     db.session().commit()
 
     return redirect(url_for("questions_index"))

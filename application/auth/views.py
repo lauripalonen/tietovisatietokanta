@@ -6,6 +6,8 @@ from application.auth.models import User
 from application.auth.forms import LoginForm, SignupForm
 from application.teams.models import Team
 
+import os
+
 
 @app.route("/auth/login", methods=["GET", "POST"])
 def auth_login():
@@ -14,15 +16,24 @@ def auth_login():
 
     form = LoginForm(request.form)
 
-    user = User.query.filter_by(username=form.username.data).first()
+    if os.environ.get("HEROKU"):
 
-    if not user:
-        return render_template("auth/loginform.html", form=form,
-                               error="No such username")
+        user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
 
-    if not bcrypt.check_password_hash(user.password, form.password.data):
-        return render_template("auth/loginform.html", form=form,
-                               error="Incorrect password")
+        if not user:
+            return render_template("auth/loginform.html", form=form,
+                                   error="No such username")
+    else:
+
+        user = User.query.filter_by(username=form.username.data).first()
+
+        if not user:
+            return render_template("auth/loginform.html", form=form,
+                                   error="No such username")
+
+        if not bcrypt.check_password_hash(user.password, form.password.data):
+           return render_template("auth/loginform.html", form=form,
+                                   error="Incorrect password")
 
     login_user(user)
     return redirect(url_for("index"))
@@ -43,9 +54,16 @@ def auth_signup():
     if not form.validate():
         return render_template("auth/signupform.html", form=form, error="Username or password too short")
 
+
     username = form.username.data
-    password = bcrypt.generate_password_hash(form.password.data)
     team_name = form.team.data
+
+    if os.environ.get("HEROKU"):
+        password = form.password.data
+
+    else:
+        password = bcrypt.generate_password_hash(form.password.data)
+
     user = User.query.filter_by(username=username).first()
 
     if user:
