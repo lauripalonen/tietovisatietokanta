@@ -14,7 +14,7 @@
       <td>{{ question.question }}</td>
       <td>{{ question.answer }}</td>
       <td>{{ question.category }}</td>
-      <td>{{ question.answeredCorrectly }}</td>
+      <td>{{ question.answered_correctly }}</td>
       <td>
         <form method="GET" action="{{ url_for('edit_form', question_id=question.id) }}">
           <input type="submit" value="edit"/>
