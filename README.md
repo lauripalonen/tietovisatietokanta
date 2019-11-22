@@ -5,8 +5,7 @@ Quiz log on kirjanpitoväline tietovisajoukkueille visailukysymysten tallentamis
 ## Heroku
 Heroku-julkaisu:  
 https://quizlog.herokuapp.com  
-(Huom 1: Salasanat tallentuvat heroku-julkaisussa selkokielisinä. **ÄLÄ KÄYTÄ ARKALUONTEISIA SALASANOJA!**)
-(Huom 2: Kysymyksien listaus ei tällä hetkellä toimi Herokussa)
+(Huom 1: Salasanat tallentuvat heroku-julkaisussa selkokielisinä. **ÄLÄ KÄYTÄ ARKALUONTEISIA SALASANOJA!**)  
 
 ## Dokumentaatio
 [Tietokantakaavio](/documentation/uml-chart.png)  
