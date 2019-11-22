@@ -25,7 +25,7 @@ def auth_login():
                                    error="No such username")
     else:
 
-        user = User.query.filter_by(username=form.username.data)
+        user = User.query.filter_by(username=form.username.data).first()
 
         if not user:
             return render_template("auth/loginform.html", form=form,
