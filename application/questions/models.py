@@ -1,4 +1,5 @@
 from application import db
+import os
 
 from sqlalchemy.sql import text
 
@@ -41,10 +42,16 @@ class Question(db.Model):
     
     @staticmethod
     def find_hardest_category(team_id):
-        stmt = text("SELECT MIN(avg_answered_correctly) AS average, category"
-                    " FROM (SELECT AVG(question.answered_correctly) AS avg_answered_correctly,"
-                    " category FROM Question WHERE team_id=:team_id"
-                    " GROUP BY category) AS avg_answers").params(team_id=team_id)
+        if os.environ.get("HEROKU"):
+            stmt = text("SELECT MIN(avg_answered_correctly), category FROM (SELECT AVG(answered_correctly::int::float4)"
+                        " AS avg_answered_correctly, category FROM Question WHERE team_id=:team_id GROUP BY category)"
+                        " AS avg_answers GROUP BY category").params(team_id=team_id)
+
+        else: 
+            stmt = text("SELECT MIN(avg_answered_correctly) AS average, category"
+                        " FROM (SELECT AVG(question.answered_correctly) AS avg_answered_correctly,"
+                        " category FROM Question WHERE team_id=:team_id"
+                        " GROUP BY category) AS avg_answers").params(team_id=team_id)
 
         ResultProxy = db.engine.execute(stmt)
 
