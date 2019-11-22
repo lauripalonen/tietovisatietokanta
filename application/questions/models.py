@@ -12,7 +12,7 @@ class Question(db.Model):
     answer = db.Column(db.String(144), nullable=False)
     category = db.Column(db.String(144))
     answered_correctly = db.Column(db.Boolean)
-    quizDate = db.Column(db.DateTime)
+    quiz_date = db.Column(db.DateTime)
 
     team_id = db.Column(db.Integer, db.ForeignKey('team.id'), nullable=False)
 
