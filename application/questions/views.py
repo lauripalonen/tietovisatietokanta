@@ -1,7 +1,7 @@
 from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 
-from application import app, db
+from application import app, db, login_required
 from application.questions.models import Question
 from application.questions.forms import QuestionForm, EditForm
 
@@ -9,8 +9,9 @@ from application.teams.models import Team
 
 
 @app.route("/questions/", methods=["GET"])
-@login_required
+@login_required(role="ANY")
 def questions_index():
+
     team = current_user.team_id
     questions = Question.query.filter_by(team_id=current_user.team_id)
 
@@ -22,14 +23,21 @@ def questions_index():
     return redirect(url_for("index"))
 
 
+@app.route("/questions/all/", methods=["GET"])
+@login_required(role="ADMIN")
+def questions_all():
+    questions = Question.query.all()
+    return render_template("questions/all.html", questions=questions)
+
+
 @app.route("/questions/new/")
-@login_required
+@login_required(role="ANY")
 def questions_form():
     return render_template("questions/new.html", form=QuestionForm())
 
 
 @app.route("/questions/<question_id>", methods=["GET"])
-@login_required
+@login_required(role="ANY")
 def edit_form(question_id):
     q = Question.query.get(question_id)
     c = "checked" if q.answered_correctly == True else ""
@@ -37,7 +45,7 @@ def edit_form(question_id):
 
 
 @app.route("/questions/<question_id>", methods=["POST"])
-@login_required
+@login_required(role="ANY")
 def questions_update(question_id):
     q = Question.query.get(question_id)
     form = EditForm(request.form)
@@ -52,7 +60,7 @@ def questions_update(question_id):
 
 
 @app.route("/questions/", methods=["POST"])
-@login_required
+@login_required(role="ANY")
 def questions_create():
     form = QuestionForm(request.form)
 
@@ -73,7 +81,7 @@ def questions_create():
 
 
 @app.route("/questions/<question_id>/delete", methods=["POST"])
-@login_required
+@login_required(role="ANY")
 def questions_delete(question_id):
     q = Question.query.get(question_id)
     db.session().delete(q)

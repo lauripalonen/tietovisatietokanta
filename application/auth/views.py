@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 
 from application import app, bcrypt, db
 from application.auth.models import User
@@ -57,6 +57,7 @@ def auth_signup():
 
     username = form.username.data
     team_name = form.team.data
+    role_id = 1
 
     if os.environ.get("HEROKU"):
         password = form.password.data
@@ -69,7 +70,7 @@ def auth_signup():
     if user:
         return render_template("auth/signupform.html", form=form, error="Username already exists")
 
-    new_user = User(username=username, password=password)
+    new_user = User(username=username, password=password, role=role_id)
     db.session().add(new_user)
 
     team = Team.query.filter_by(name=team_name).first()

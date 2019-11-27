@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <td><strong>Question</strong></td>
+      <td><strong>Answer</strong></td>
+      <td><strong>Category</strong></td>
+    </tr>
+    {% for question in questions %}
+    <tr>
+      <td>{{ question.question }}</td>
+      <td>{{ question.answer }}</td>
+      <td>{{ question.category }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
