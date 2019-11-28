@@ -67,6 +67,7 @@ from application.teams import models
 from application.teams import views
 
 from application.auth.models import User
+from application.auth.models import Role
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -76,3 +77,13 @@ try:
   db.create_all()
 except:
   pass
+
+#Initiate role table
+admin_role = Role.query.filter_by(role = "ADMIN").first()
+if not admin_role:
+  Role.query.delete()
+  admin_role = Role("ADMIN")
+  other_role = Role("ANY")
+  db.session().add(admin_role)
+  db.session().add(other_role)
+  db.session().commit()
