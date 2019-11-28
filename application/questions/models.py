@@ -13,15 +13,16 @@ class Question(db.Model):
     answer = db.Column(db.String(144), nullable=False)
     category = db.Column(db.String(144))
     answered_correctly = db.Column(db.Boolean)
-    quiz_date = db.Column(db.DateTime)
+    quiz_date = db.Column(db.Date)
 
     team_id = db.Column(db.Integer, db.ForeignKey('team.id'), nullable=False)
 
-    def __init__(self, question, answer, category, answered_correctly, team_id):
+    def __init__(self, question, answer, category, answered_correctly, date, team_id):
         self.question = question
         self.answer = answer
         self.category = category
         self.answered_correctly = answered_correctly
+        self.quiz_date = date
         self.team_id  = team_id
 
     @staticmethod

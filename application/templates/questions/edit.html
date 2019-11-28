@@ -1,32 +1,38 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
+<table>
+  <form method="POST" action="{{ url_for('questions_update', question_id=question.id) }}">
     <tr>
       <td><strong>{{ form.question.label }}</strong></td>
       <td><strong>{{ form.answer.label }}</strong></td>
-      <td><strong>{{ form.category.label }}</strong></td>
       <td><strong>{{ form.correct.label }}</strong></td>
     </tr>
     <tr>
-      <form method="POST" action="{{ url_for('questions_update', question_id=question.id) }}">
-        <td>
-          {{ form.question(value=question.question) }}
-        </td>
-        <td>
-          {{ form.answer(value=question.answer) }}
-        </td>
-        <td>
-          {{ form.category(value=question.category) }}
-        </td>
-        <td>
-          {{ form.correct(checked=question.answered_correctly) }}
-        </td>
+      <td>{{ form.question(value=question.question) }}</td>
+      <td>{{ form.answer(value=question.answer) }}</td>
+      <td style="text-align:center">{{ form.correct(checked=question.answered_correctly) }}</td>
     </tr>
-  </table>
-  <input type="submit" value="update"/>
-</form>
-<form method="POST" action="{{ url_for('questions_delete', question_id=question.id) }}">
-  <input type="submit" value="delete"/>
-</form>
+    <tr>
+      <td><strong>{{ form.category.label }}</strong></td>
+      <td><strong>{{ form.date.label }}</strong></td>
+    </tr>
+    <tr>
+      <td>{{ form.category(value=question.category) }}</td>
+      <td>{{ form.date(value=question.quiz_date) }}</td>
+    </tr>
+</table>
+<table>
+  <tr>
+    <td>
+      <input type="submit" value="update" />
+    </td>
+    </form>
+    <td>
+      <form method="POST" action="{{ url_for('questions_delete', question_id=question.id) }}">
+        <input type="submit" value="delete" />
+      </form>
+    </td>
+  </tr>
+</table>
 {% endblock %}

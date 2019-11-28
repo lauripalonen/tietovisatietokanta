@@ -1,45 +1,35 @@
 {% extends "layout.html" %}
-  
+
 {% block body %}
 <form method="POST" action="{{ url_for('questions_create') }}">
   <table>
     <tr>
-      <td>
-        <strong>{{ form.question.label }}</strong>
-      </td>
-      <td>
-        <strong>{{ form.answer.label }}</strong>
-      </td>
-      <td>
-        <strong>{{ form.category.label }}</strong>
-      </td>
-      <td>
-        <strong>{{ form.correct.label }}</strong>
-      </td>
+      <td><strong>{{ form.question.label }}</strong></td>
+      <td><strong>{{ form.answer.label }}</strong></td>
+      <td><strong>{{ form.correct.label }}</strong></td>
+    <tr>
+      <td>{{ form.question }}</td>
+      <td>{{ form.answer }}</td>
+      <td style="text-align: center">{{ form.correct }}</td>
+    </tr>
+    <td><strong>{{ form.category.label }}</strong></td>
+    <td><strong>{{ form.date.label }}</strong></td>
     </tr>
     <tr>
-      <td>
-        {{ form.question }}
-      </td>
-      <td>
-        {{ form.answer }}
-      </td>
-      <td>
-        {{ form.category }}
-      </td>
-      <td>
-        {{ form.correct }}
-      </td>       
+      <td>{{ form.category }}</td>
+      <td>{{ form.date }}</td>
+    </tr>
+    <tr>
+      <td><input type="submit" value="Add a new question" /></td>
     </tr>
   </table>
-  <input type="submit" value="Add a new question"/>
   <ul>
-      {% for error in form.question.errors %}
-      <li>{{ error }}</li>
-      {% endfor %}
-      {% for error in form.answer.errors %}
-      <li>{{ error }}</li>
-      {% endfor %}
-    </ul>
+    {% for error in form.question.errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+    {% for error in form.answer.errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+  </ul>
 </form>
 {% endblock %}

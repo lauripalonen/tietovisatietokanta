@@ -72,6 +72,7 @@ def questions_create():
         form.answer.data,
         form.category.data,
         form.correct.data,
+        form.date.data,
         current_user.team_id)
 
     db.session().add(q)
