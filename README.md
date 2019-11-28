@@ -24,6 +24,7 @@ salasana: test_pw
 - kysymysten listaaminen (aikajärjestyksessä)
 - Tiimin vaikeimman kysymyskategorian näyttö (toiminto ei tällä hetkellä toimi odotesti Herokussa)
 - Admin-ominaisuus: kaikkien joukkueiden kysymysten näyttö
+- Edustamansa joukkueen näyttö sovelluksen navigointipalkin alla
 
 ## Käyttöohje
 Heroku-sovelluksessa pääsee kirjautumaan tai rekisteröitymään ylänavigaatiopalkin Login tai Sign up -napeista. Sovelluksessa on jo käytössä seuraavat tunnukset:  
@@ -36,7 +37,7 @@ Heroku-sovelluksessa pääsee kirjautumaan tai rekisteröitymään ylänavigaati
 
 Tunnuksella ADMIN voi tarkastella normaalikäyttäjästä poikkeavia admin-toimintoja.
 
-Uudet käyttäjät lisäävät aina itselleen joukkueen, tai liittyvät jo olemassa olevaan, kirjoittamalla joukkueen nimen rekisteröitymisnäkymän Team-kenttään. Tämän jälkeen kaikki kysymykset jotka käyttäjä lisää, yhdistetään käyttäjän joukkueeseen.
+Uudet käyttäjät lisäävät itselleen joukkueen, tai liittyvät jo olemassa olevaan kirjoittamalla joukkueen nimen rekisteröitymisnäkymän Team-kenttään. Tämän jälkeen kaikki kysymykset jotka käyttäjä lisää, yhdistetään käyttäjän joukkueeseen.
 
 Sisäänkirjautumisen onnistuttua, oman joukkueen kysymyksiä voi selata aikajärjestyksessä List questions -napista. Kysymysten lisäksi sovellus näyttää käyttäjälle joukkueensa vaikeimman kategorian (vähiten oikeita vastauksia prosentuaalisesti). Tämä toiminto saattaa Heroku-sovelluksessa toimia tällä hetkellä odottamattomalla tavalla. Jos oma joukkue ei ole lisännyt kysymyksiä, List questions ei näytä yhtään kysymystä.  
 
