@@ -32,11 +32,11 @@
           <a class="nav-link" href="{{ url_for('auth_signup') }}">Sign up</a>
         </li>
         {% endif %}
-        {% if current_user.role_id == 0 %}
+        {% if current_user.role_id == 1 %}
         <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('questions_all') }} ">View all questions</a>
-          </li>
-          {% endif %}
+          <a class="nav-link" href="{{ url_for('questions_all') }} ">View all questions</a>
+        </li>
+        {% endif %}
       </ul>
       <div class="form-inline mt-2 mt-md-0">
         {% if current_user.is_authenticated %}
@@ -46,7 +46,13 @@
     </div>
   </nav>
 
+
   <main role="main" class="container">
+    {% if current_user.is_authenticated %}
+    <div>
+      <p><strong>Representing team "{{ current_user.get_team() }}"</strong></p>
+    </div>
+    {% endif %}
     {% block body %}
     <p>
       Content.
