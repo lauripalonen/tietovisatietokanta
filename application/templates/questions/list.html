@@ -8,6 +8,7 @@
       <td><strong>Answer</strong></td>
       <td><strong>Category</strong></td>
       <td><strong>Answered correctly</strong></td>
+      <td><strong>Date</strong></td>
     </tr>
     {% for question in questions %}
     <tr>
@@ -15,6 +16,7 @@
       <td>{{ question.answer }}</td>
       <td>{{ question.category }}</td>
       <td>{{ question.answered_correctly }}</td>
+      <td>{{ question.quiz_date }}</td>
       <td>
         <form method="GET" action="{{ url_for('edit_form', question_id=question.id) }}">
           <input type="submit" value="edit"/>

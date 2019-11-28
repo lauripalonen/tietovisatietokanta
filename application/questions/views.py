@@ -13,7 +13,7 @@ from application.teams.models import Team
 def questions_index():
 
     team = current_user.team_id
-    questions = Question.query.filter_by(team_id=current_user.team_id)
+    questions = Question.query.filter_by(team_id=current_user.team_id).order_by(Question.quiz_date.desc())
 
     if (team and questions.first()):
         return render_template("questions/list.html",
@@ -26,7 +26,7 @@ def questions_index():
 @app.route("/questions/all/", methods=["GET"])
 @login_required(role="ADMIN")
 def questions_all():
-    questions = Question.query.all()
+    questions = Question.query.all().order_by(Question.quiz_date.desc())
     return render_template("questions/all.html", questions=questions)
 
 
