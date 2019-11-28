@@ -54,6 +54,7 @@ def questions_update(question_id):
     q.answer = form.answer.data
     q.category = form.category.data
     q.answered_correctly = form.correct.data
+    q.quiz_date = form.date.data
     db.session().commit()
 
     return redirect(url_for("questions_index"))
