@@ -6,12 +6,14 @@
       <td><strong>Question</strong></td>
       <td><strong>Answer</strong></td>
       <td><strong>Category</strong></td>
+      <td><strong>Date</strong></td>
     </tr>
     {% for question in questions %}
     <tr>
       <td>{{ question.question }}</td>
       <td>{{ question.answer }}</td>
       <td>{{ question.category }}</td>
+      <td>{{ question.quiz_date }}</td>
     </tr>
     {% endfor %}
   </table>

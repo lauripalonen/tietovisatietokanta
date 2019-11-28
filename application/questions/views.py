@@ -26,7 +26,7 @@ def questions_index():
 @app.route("/questions/all/", methods=["GET"])
 @login_required(role="ADMIN")
 def questions_all():
-    questions = Question.query.all().order_by(Question.quiz_date.desc())
+    questions = Question.query.order_by(Question.quiz_date.desc()).all()
     return render_template("questions/all.html", questions=questions)
 
 
