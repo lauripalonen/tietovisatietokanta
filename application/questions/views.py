@@ -9,7 +9,7 @@ from application.teams.models import Team
 
 
 @app.route("/questions/", methods=["GET"])
-@login_required(role="ANY")
+@login_required()
 def questions_index():
 
     team = current_user.team_id
@@ -31,13 +31,13 @@ def questions_all():
 
 
 @app.route("/questions/new/")
-@login_required(role="ANY")
+@login_required()
 def questions_form():
     return render_template("questions/new.html", form=QuestionForm())
 
 
 @app.route("/questions/<question_id>", methods=["GET"])
-@login_required(role="ANY")
+@login_required()
 def edit_form(question_id):
     q = Question.query.get(question_id)
     c = "checked" if q.answered_correctly == True else ""
@@ -45,7 +45,7 @@ def edit_form(question_id):
 
 
 @app.route("/questions/<question_id>", methods=["POST"])
-@login_required(role="ANY")
+@login_required()
 def questions_update(question_id):
     q = Question.query.get(question_id)
     form = EditForm(request.form)
@@ -61,7 +61,7 @@ def questions_update(question_id):
 
 
 @app.route("/questions/", methods=["POST"])
-@login_required(role="ANY")
+@login_required()
 def questions_create():
     form = QuestionForm(request.form)
 
@@ -83,7 +83,7 @@ def questions_create():
 
 
 @app.route("/questions/<question_id>/delete", methods=["POST"])
-@login_required(role="ANY")
+@login_required()
 def questions_delete(question_id):
     q = Question.query.get(question_id)
     db.session().delete(q)
