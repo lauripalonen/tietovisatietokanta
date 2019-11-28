@@ -1,6 +1,8 @@
 from application import db
 from application import user_team
 
+from sqlalchemy.sql import text
+
 class User(db.Model):
 
     __tablename__ = "account"
@@ -17,10 +19,10 @@ class User(db.Model):
 
     teams = db.relationship('Team', secondary="user_team", backref=db.backref('members', lazy=True))
 
-    def __init__(self, username, password, role):
+    def __init__(self, username, password, role_id):
         self.username = username
         self.password = password
-        self.role = role
+        self.role_id = role_id
 
     def get_id(self):
         return self.id
@@ -35,10 +37,24 @@ class User(db.Model):
         return True
 
     def roles(self):
-        if(self.role_id == 0):
-            return ["ADMIN"]
-        else:
-            return ["ANY"]
+        stmt = text("SELECT role FROM Role JOIN Account ON account.role_id = role.id"
+                    " WHERE role_id = :role_id").params(role_id=self.role_id)
+
+        res = db.engine.execute(stmt)
+
+        response = res.fetchone()
+        
+        return response
+
+    def get_team(self):
+        stmt = text("SELECT name FROM Team JOIN Account ON account.team_id = team.id"
+                    " WHERE account.id = :self_id").params(self_id=self.id)
+
+        res = db.engine.execute(stmt)
+
+        response = res.fetchone()
+
+        return response[0]
 
 class Role(db.Model):
 
