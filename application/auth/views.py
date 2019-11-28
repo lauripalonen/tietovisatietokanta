@@ -57,7 +57,7 @@ def auth_signup():
 
     username = form.username.data
     team_name = form.team.data
-    role_id = 1
+    role_id = 2
 
     if os.environ.get("HEROKU"):
         password = form.password.data
@@ -70,7 +70,7 @@ def auth_signup():
     if user:
         return render_template("auth/signupform.html", form=form, error="Username already exists")
 
-    new_user = User(username=username, password=password, role=role_id)
+    new_user = User(username=username, password=password, role_id=role_id)
     db.session().add(new_user)
 
     team = Team.query.filter_by(name=team_name).first()
