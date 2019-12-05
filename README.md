@@ -1,6 +1,6 @@
 # Quiz log
 
-Quiz log on kirjanpitoväline tietovisajoukkueille visailukysymysten tallentamiseksi. Sovelluksessa voi ylläpitää tietovisakysymyksiin liittyvää tietoa (esitetty kysymys, vastaus, kysymyskategoria, esitysajankohta ja onko joukkue vastannut kysymykseen oikein). Tallennetusta tiedosta voi koostaa yhteenvetoja, joista joukkue voi reflektoida omaa menestystään esimerkiksi tietyissä kysymyskategoriassa tai eri ajankohtina.
+Quiz log on kirjanpitoväline tietovisajoukkueille visailukysymysten tallentamiseksi. Sovelluksessa voi ylläpitää tietovisakysymyksiin liittyvää tietoa (esitetty kysymys, vastaus, kysymyskategoria, esitysajankohta ja onko joukkue vastannut kysymykseen oikein). Tallennetusta tiedosta voi koostaa yhteenvetoja, esimerkiksi joukkueelle haastavimman kategorian.
 
 ## Heroku
 Heroku-julkaisu:  
@@ -39,11 +39,13 @@ Tunnuksella ADMIN voi tarkastella normaalikäyttäjästä poikkeavia admin-toimi
 
 Uudet käyttäjät lisäävät itselleen joukkueen, tai liittyvät jo olemassa olevaan kirjoittamalla joukkueen nimen rekisteröitymisnäkymän Team-kenttään. Tämän jälkeen kaikki kysymykset jotka käyttäjä lisää, yhdistetään käyttäjän joukkueeseen.
 
-Sisäänkirjautumisen onnistuttua, oman joukkueen kysymyksiä voi selata aikajärjestyksessä List questions -napista. Kysymysten lisäksi sovellus näyttää käyttäjälle joukkueensa vaikeimman kategorian (vähiten oikeita vastauksia prosentuaalisesti). Tämä toiminto saattaa Heroku-sovelluksessa toimia tällä hetkellä odottamattomalla tavalla. Jos oma joukkue ei ole lisännyt kysymyksiä, List questions ei näytä yhtään kysymystä.  
+Sisäänkirjautumisen onnistuttua, oman joukkueen kysymyksiä voi selata aikajärjestyksessä List questions -napista. Kysymysten lisäksi sovellus näyttää käyttäjälle joukkueensa vaikeimman kategorian (vähiten oikeita vastauksia prosentuaalisesti). Jos oma joukkue ei ole lisännyt kysymyksiä, List questions ei näytä yhtään kysymystä.  
 
-Uutta kysymystä pääsee luomaan Add a question -napista. Mikäli käyttäjä täyttää kaikki kysymyskentät hyväksyttävästi, kysymys lisätään kaikkine taustatietoineen joukkueen kysymyslistaukseen (johon navigointi List questions -napista).  
+Uutta kysymystä pääsee luomaan Add a question -napista. Mikäli käyttäjä täyttää kaikki kysymyskentät hyväksyttävästi, kysymys lisätään kaikkine taustatietoineen joukkueen kysymyslistaukseen (johon navigointi List questions -napista).
 
-Kysymyslistauksesta pääsee myös muokkaamaaan jo lisättyä kysymystä painamalla edit-painiketta. Tällöin käyttäjälle avautuu näkymä, jossa voi vapaasti muokata mitä tahansa kysymykseen liittyvää kenttää.  
+Kysymyslistauksesta pääsee myös muokkaamaaan jo lisättyä kysymystä painamalla edit-painiketta. Tällöin käyttäjälle avautuu näkymä, jossa voi vapaasti muokata mitä tahansa kysymykseen liittyvää kenttää.
+
+Sovelluksessa on myös nähtävissä Manage teams -toiminto, joka on toistaiseksi vielä kehityksessä. Sivulla voi kuitenkin onnistuneesti lisätä uuden joukkueen käyttäjälle, ja selata käyttäjän kaikkia joukkueita. Edustettavan joukkueen vaihto ei toistaiseksi ole toiminnassa. 
 
 Mikäli käyttäjä on kirjautunut admin-tunnuksilla, on tällöin käytössä normaalitoimintojen lisäksi View all questions, joka näyttää kaikkien joukkueiden kaikki kysymykset yhtenä listana.  
 
