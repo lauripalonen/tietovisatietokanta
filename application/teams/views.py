@@ -11,9 +11,16 @@ from application.teams.forms import TeamForm
 @login_required
 def teams_form():
 
+  user = User.query.filter_by(id=current_user.id).first()
+  teams = Team.find_teams_of_a_user(current_user.id)
+  teams_list = [(team[0], team[1]) for team in teams]
+  
+  form = TeamForm()
+  form.team_list.choices = teams_list
+
   if request.method == "GET":
 
-    return render_template("/teams/teamform.html", form=TeamForm())
+    return render_template("/teams/teamform.html", form=form, teams=teams)
 
   if request.method == "POST":
     form = TeamForm(request.form)
@@ -22,16 +29,14 @@ def teams_form():
     team = Team.query.filter_by(name=name).first()
 
     if team:
-      return render_template("teams/teamform.html", form=form, error="Teams already exists")
+      user.user_teams.append(team)
+      db.session().commit()
+      return render_template("teams/teamform.html", form=form, teams=teams)
 
     new_team = Team(name)
     db.session().add(new_team)
 
-    user = User.query.filter_by(username=current_user.username).first()
     new_team.members.append(user)
-
-    team_id = Team.query.filter_by(name=name).first().id
-    current_user.team_id = team_id
 
     db.session().commit()
 

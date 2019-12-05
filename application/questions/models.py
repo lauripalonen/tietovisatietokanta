@@ -51,10 +51,6 @@ class Question(db.Model):
                         " FROM (SELECT AVG(answered_correctly::int::float4)"
                         " FROM Question WHERE team_id=:team_id GROUP BY category) as avg_correct)").params(team_id=team_id)
 
-            # stmt = text("SELECT MIN(avg_answered_correctly), category FROM (SELECT AVG(answered_correctly::int::float4)"
-            #             " AS avg_answered_correctly, category FROM Question WHERE team_id=:team_id GROUP BY category)"
-            #             " AS avg_answers GROUP BY category").params(team_id=team_id)
-
         else: 
             stmt = text("SELECT MIN(avg_answered_correctly) AS average, category"
                         " FROM (SELECT AVG(question.answered_correctly) AS avg_answered_correctly,"

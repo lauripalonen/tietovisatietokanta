@@ -1,23 +1,37 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{{ error }}
 <form method="POST" action="{{ url_for('teams_form') }}">
   <table>
+    <tr>
       <td>
-        {{ form.team_name.label }}
+       <h4>{{ form.team_name.label }}</h4>
       </td>
+    </tr>
     <tr>
       <td>
         {{ form.team_name }}
       </td>
     </tr>
-    </tr>
     <tr>
-      <td colspan="2">
-        <input type="submit" value="Add a team" />
+      <td>
+        <input type="submit" value="Add team" />
       </td>
     </tr>
+  </table>
 </form>
-
+  <h4>Your teams:</h4>
+  <!-- <form method="POST" action="{{ url_for('teams_form') }}"> -->
+    <table>
+      <tr>
+        <td>
+          {{ form.team_list }}
+        </td>
+        <td>
+          <button>Set as representive</button>
+          <!-- <input type="submit" value="Set as representive" /> -->
+        </td>
+      </tr>
+    </table>
+  </form>
 {% endblock %}
