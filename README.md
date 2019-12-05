@@ -1,6 +1,9 @@
 # Quiz log
 
-Quiz log on kirjanpitoväline tietovisajoukkueille visailukysymysten tallentamiseksi. Sovelluksessa voi ylläpitää tietovisakysymyksiin liittyvää tietoa (esitetty kysymys, vastaus, kysymyskategoria, esitysajankohta ja onko joukkue vastannut kysymykseen oikein). Tallennetusta tiedosta voi koostaa yhteenvetoja, esimerkiksi joukkueelle haastavimman kategorian.
+Quiz log on kirjanpitoväline tietovisajoukkueille visailukysymysten tallentamiseksi. Sovelluksessa voi ylläpitää tietovisakysymyksiin liittyvää tietoa (esitetty kysymys, vastaus, kysymyskategoria, esitysajankohta ja onko joukkue vastannut kysymykseen oikein). Tallennetusta tiedosta voi koostaa yhteenvetoja, esimerkiksi joukkueelle haastavimman kategorian.  
+
+## Käyttötapaukset
+[User stories](/documentation/userstories.md)
 
 ## Heroku
 Heroku-julkaisu:  
