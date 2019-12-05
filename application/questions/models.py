@@ -44,9 +44,16 @@ class Question(db.Model):
     @staticmethod
     def find_hardest_category(team_id):
         if os.environ.get("HEROKU"):
-            stmt = text("SELECT MIN(avg_answered_correctly), category FROM (SELECT AVG(answered_correctly::int::float4)"
-                        " AS avg_answered_correctly, category FROM Question WHERE team_id=:team_id GROUP BY category)"
-                        " AS avg_answers GROUP BY category").params(team_id=team_id)
+            stmt = text("SELECT avg, category"
+                        " FROM (SELECT AVG(answered_correctly::int::float4), category"
+                        " FROM Question WHERE team_id=:team_id GROUP BY category) AS avg_correct"
+                        " WHERE avg = (SELECT MIN(avg_correct.avg)"
+                        " FROM (SELECT AVG(answered_correctly::int::float4)"
+                        " FROM Question WHERE team_id=:team_id GROUP BY category) as avg_correct)").params(team_id=team_id)
+
+            # stmt = text("SELECT MIN(avg_answered_correctly), category FROM (SELECT AVG(answered_correctly::int::float4)"
+            #             " AS avg_answered_correctly, category FROM Question WHERE team_id=:team_id GROUP BY category)"
+            #             " AS avg_answers GROUP BY category").params(team_id=team_id)
 
         else: 
             stmt = text("SELECT MIN(avg_answered_correctly) AS average, category"
