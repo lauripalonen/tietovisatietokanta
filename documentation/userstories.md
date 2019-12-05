@@ -19,3 +19,7 @@ suunniteltu kattavan.
 - Listasta voi laatia mm. seuraavia yhteenvetoja:
   - vaikein kysymyskategoria
   - montako prosenttia kysymyksistä on mennyt oikein valittuna ajankohtana.
+  
+### Keskeneräiset käyttötapaukset
+- Kysymyslistan suodatus  
+- Yhteenvedot (vaikein kysymyskategoria on toiminnassa)
