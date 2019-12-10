@@ -27,7 +27,8 @@ salasana: test_pw
 - kysymysten listaaminen (aikajärjestyksessä)
 - Tiimin vaikeimman kysymyskategorian näyttö (toiminto ei tällä hetkellä toimi odotesti Herokussa)
 - Admin-ominaisuus: kaikkien joukkueiden kysymysten näyttö
-- Edustamansa joukkueen näyttö sovelluksen navigointipalkin alla
+- Edustamansa joukkueen näyttö sovelluksen navigointipalkin alla  
+- Useamman joukkueen lisäys yhdelle käyttäjälle
 
 ## Käyttöohje
 Heroku-sovelluksessa pääsee kirjautumaan tai rekisteröitymään ylänavigaatiopalkin Login tai Sign up -napeista. Sovelluksessa on jo käytössä seuraavat tunnukset:  
