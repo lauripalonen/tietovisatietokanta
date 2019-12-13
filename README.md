@@ -1,23 +1,28 @@
 # Quiz log
 
-Quiz log on kirjanpitoväline tietovisajoukkueille visailukysymysten tallentamiseksi. Sovelluksessa voi ylläpitää tietovisakysymyksiin liittyvää tietoa (esitetty kysymys, vastaus, kysymyskategoria, esitysajankohta ja onko joukkue vastannut kysymykseen oikein). Tallennetusta tiedosta voi koostaa yhteenvetoja, esimerkiksi joukkueelle haastavimman kategorian.  
+Quiz log on kirjanpitoväline tietovisajoukkueille visailukysymysten tallentamiseksi. Sovelluksessa voi ylläpitää tietovisakysymyksiin liittyvää tietoa (esitetty kysymys, vastaus, kysymyskategoria, esitysajankohta ja onko joukkue vastannut kysymykseen oikein). Tallennettujen tiedostojen perusteella sovelluksesta voi nähdä yhteenvetona joukkueelle henkilökohtaisesti vaikeimman kategorian ja koko tietokannan menestyneimmän joukkueen.  
 
 ## Käyttötapaukset
 [User stories](/documentation/userstories.md)
 
 ## Heroku
-Heroku-julkaisu:  
-https://quizlog.herokuapp.com  
-(Huom: Salasanat tallentuvat heroku-julkaisussa selkokielisinä. **ÄLÄ KÄYTÄ ARKALUONTEISIA SALASANOJA!**)  
+Huom: Salasanat tallentuvat heroku-sovelluksessa selkokielisinä. **ÄLÄ KÄYTÄ ARKALUONTEISIA SALASANOJA!**
+Heroku-julkaisu:  https://quizlog.herokuapp.com   
 
 ## Dokumentaatio
 [Tietokantakaavio](/documentation/uml-chart.png)  
 [User stories](/documentation/userstories.md)
 
-## Testitunnukset
-Heroku-sovellukseen pääsee kirjautumaan seuraavilla tunnuksilla:  
-käyttäjänimi: test_user  
-salasana: test_pw  
+## <a id="tunnukset"></a>Testitunnukset
+Heroku-sovellukseen pääsee kirjautumaan seuraavilla tunnuksilla:    
+
+| username | password |
+| --- | --- |
+| test_user | test_pw |
+| another_user | another_pw |
+| ADMIN | ADMIN |  
+
+ADMIN-tunnuksilla voi tarkastella normaalikäyttäjästä poikkeavia admin-toimintoja.
 
 ## Toiminnot
 [User stories](/documentation/userstories.md) -dokumentissa on kuvattu sovelluksen suunnitellut toiminnallisuudet. Jo julkaistuja toimintoja:  
@@ -30,29 +35,28 @@ salasana: test_pw
 - Edustamansa joukkueen näyttö sovelluksen navigointipalkin alla  
 - Useamman joukkueen lisäys yhdelle käyttäjälle
 
-## Käyttöohje
-Heroku-sovelluksessa pääsee kirjautumaan tai rekisteröitymään ylänavigaatiopalkin Login tai Sign up -napeista. Sovelluksessa on jo käytössä seuraavat tunnukset:  
+## Käyttöohje  
 
-| username | password |
-| --- | --- |
-| test_user | test_pw |
-| another_user | another_pw |
-| ADMIN | ADMIN |  
+### kirjautuminen
+Heroku-sovelluksessa pääsee kirjautumaan tai rekisteröitymään ylänavigaatiopalkin Login tai Sign up -napeista.  Sovelluksessa olemassa olevat tunnukset on listattu kohdassa **Testitunnukset**
 
-Tunnuksella ADMIN voi tarkastella normaalikäyttäjästä poikkeavia admin-toimintoja.
+Uudet käyttäjät lisäävät itselleen joukkueen, tai liittyvät jo olemassa olevaan kirjoittamalla joukkueen nimen rekisteröitymisnäkymän Team-kenttään. Tämän jälkeen kaikki kysymykset jotka käyttäjä lisää, yhdistetään käyttäjän joukkueeseen.  
 
-Uudet käyttäjät lisäävät itselleen joukkueen, tai liittyvät jo olemassa olevaan kirjoittamalla joukkueen nimen rekisteröitymisnäkymän Team-kenttään. Tämän jälkeen kaikki kysymykset jotka käyttäjä lisää, yhdistetään käyttäjän joukkueeseen.
+### kysymysten listaaminen
+Oman joukkueen kysymyksiä voi selata aikajärjestyksessä List questions -napista. Kysymysten lisäksi sovellus näyttää käyttäjälle joukkueensa vaikeimman kategorian (vähiten oikeita vastauksia prosentuaalisesti). Jos oma joukkue ei ole lisännyt kysymyksiä, List questions ei näytä yhtään kysymystä.
 
-Sisäänkirjautumisen onnistuttua, oman joukkueen kysymyksiä voi selata aikajärjestyksessä List questions -napista. Kysymysten lisäksi sovellus näyttää käyttäjälle joukkueensa vaikeimman kategorian (vähiten oikeita vastauksia prosentuaalisesti). Jos oma joukkue ei ole lisännyt kysymyksiä, List questions ei näytä yhtään kysymystä.  
-
-Uutta kysymystä pääsee luomaan Add a question -napista. Mikäli käyttäjä täyttää kaikki kysymyskentät hyväksyttävästi, kysymys lisätään kaikkine taustatietoineen joukkueen kysymyslistaukseen (johon navigointi List questions -napista).
+### kysymyksen lisääminen ja muokkaus
+Uutta kysymystä pääsee luomaan Add a question -napista. Mikäli käyttäjä täyttää kaikki kysymyskentät hyväksyttävästi, kysymys lisätään kaikkine taustatietoineen joukkueen kysymyslistaukseen (johon navigointi List questions -napista). Kysymykset lisätään lisäyshetkellä edustavan joukkueen tietoihin.  
 
 Kysymyslistauksesta pääsee myös muokkaamaaan jo lisättyä kysymystä painamalla edit-painiketta. Tällöin käyttäjälle avautuu näkymä, jossa voi vapaasti muokata mitä tahansa kysymykseen liittyvää kenttää.
 
-Sovelluksessa on myös nähtävissä Manage teams -toiminto, joka on toistaiseksi vielä kehityksessä. Sivulla voi kuitenkin onnistuneesti lisätä uuden joukkueen käyttäjälle, ja selata käyttäjän kaikkia joukkueita. Edustettavan joukkueen vaihto ei toistaiseksi ole toiminnassa. 
+### tiimien hallinta
+Manage teams -sivulla voi hallinnoida omia joukkueitaan. Sivulla voi lisätä uuden joukkueen, tai valita jonkin omista joukkueistaan muokattavaksi. Muokkaussivulla voi vaihtaa joukkueen nimeä, vaihtaa edustettavaa joukkuetta tai poistaa joukkue.
 
-Mikäli käyttäjä on kirjautunut admin-tunnuksilla, on tällöin käytössä normaalitoimintojen lisäksi View all questions, joka näyttää kaikkien joukkueiden kaikki kysymykset yhtenä listana.  
+### admin toiminnot
+Mikäli käyttäjä on kirjautunut admin-tunnuksilla, on tällöin käytössä normaalitoimintojen lisäksi View all questions. Sivulta näkee parhaiten menestyneen joukkueen (eniten oikeita vastauksia prosentuaalisesti). Lisäksi sivulla on **Destroy**-nappi, jolla voi pyyhkiä tietokannan kaikki tiedot, lukuunottamatta ADMIN tunnuksia.
 
+### uloskirjautuminen
 Sovelluksesta pääsee kirjautumaan ulos navigaatiopalkin Logout-napista.
 
 ## Asennusohje
