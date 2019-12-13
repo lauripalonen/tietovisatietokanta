@@ -30,9 +30,20 @@
     </form>
     <td>
       <form method="POST" action="{{ url_for('questions_delete', question_id=question.id) }}">
-        <input type="submit" value="delete" />
+        <input type="submit" value="delete" onClick='return confirm("Are you sure?")'/>
       </form>
     </td>
   </tr>
 </table>
+<ul>
+  {% for error in form.question.errors %}
+  <li>{{ error }}</li>
+  {% endfor %}
+  {% for error in form.answer.errors %}
+  <li>{{ error }}</li>
+  {% endfor %}
+  {% for error in form.category.errors %}
+  <li>{{ error }}</li>
+  {% endfor %}
+</ul>
 {% endblock %}
