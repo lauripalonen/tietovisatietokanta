@@ -2,6 +2,9 @@
 
 
 {% block body %}
+{% if error %}
+<p>{{ error }}</p>
+{% endif %}
 <h3>Welcome to Quiz log!</h3>
 <p>Use the top bar to navigate through the application.</p>
 {% endblock %}

@@ -21,7 +21,7 @@ def questions_index():
                                questions=questions,
                                hardest_category=Question.find_hardest_category(team_id=team))
 
-    return redirect(url_for("index"))
+    return render_template("/index.html", error="Your team has no questions yet.")
 
 
 @app.route("/questions/all/", methods=["GET", "POST"])
