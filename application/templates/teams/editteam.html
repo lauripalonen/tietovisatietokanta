@@ -14,9 +14,12 @@
   <tr>
     <td>
       <form method="POST" action="{{ url_for('teams_edit', team_id=team.id) }}">
-        <input type="submit" name="btn" value="Remove from my teams" />
+        <input type="submit" name="btn" value="Remove from my teams" onClick='return confirm("Are you sure?")'/>
       </form>
     </td>
   </tr>
 </table>
+{% if error %}
+<p>{{ error }}</p>
+{% endif %}
 {% endblock %}
