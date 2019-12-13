@@ -83,7 +83,7 @@ def auth_signup():
 
     created_user = User.query.filter_by(username=username).first()
 
-    new_user.team_id = team.id
+    new_user.representive_team_id = team.id
     team.members.append(created_user)
 
     db.session().commit()

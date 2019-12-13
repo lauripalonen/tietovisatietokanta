@@ -71,7 +71,7 @@ def teams_edit(team_id):
 
     if request.form["btn"] == "Set as representive":
         user = User.query.filter_by(id=current_user.id).first()
-        user.team_id = team_id
+        user.representive_team_id = team_id
         db.session().commit()
         return render_template("/teams/editteam.html", team=team, form=form)
 
@@ -87,7 +87,7 @@ def teams_edit(team_id):
         if request.method == "POST":
             user = User.query.filter_by(id=current_user.id).first()
 
-            if (user.team_id == int(team_id)):
+            if (user.representive_team_id == int(team_id)):
                 errorMsg = "Cannot remove representive team. Set another team as reprsentive team first."
                 return render_template("/teams/editteam.html", team=team, form=form, error=errorMsg)
 

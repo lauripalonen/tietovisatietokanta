@@ -14,7 +14,7 @@ class User(db.Model):
 
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
-    team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
+    representive_team_id = db.Column(db.Integer)
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
 
     teams = db.relationship('Team', secondary="user_team", backref=db.backref('members', lazy=True))
@@ -47,22 +47,22 @@ class User(db.Model):
         return response
 
     def get_team(self):
-        stmt = text("SELECT name FROM Team JOIN Account ON account.team_id = team.id"
+        stmt = text("SELECT name FROM Team JOIN Account ON account.representive_team_id = team.id"
                     " WHERE account.id = :self_id").params(self_id=self.id)
 
         res = db.engine.execute(stmt)
 
         response = res.fetchone()
 
-        return response[0]
+        if response:
+            return response[0]
+
+        return None
 
     def remove_team(self, team_id):
         stmt = text("DELETE FROM user_team WHERE user_id = :user_id AND team_id = :team_id").params(user_id=self.id, team_id = team_id)
 
         db.engine.execute(stmt)
-        print("trying to remove team...")
-
-        return print("team removed")
 
 class Role(db.Model):
 

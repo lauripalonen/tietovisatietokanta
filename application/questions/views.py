@@ -13,8 +13,8 @@ from application.teams.models import Team
 @login_required()
 def questions_index():
 
-    team = current_user.team_id
-    questions = Question.query.filter_by(team_id=current_user.team_id).order_by(Question.quiz_date.desc())
+    team = current_user.representive_team_id
+    questions = Question.query.filter_by(team_id=current_user.representive_team_id).order_by(Question.quiz_date.desc())
 
     if (team and questions.first()):
         return render_template("questions/list.html",
@@ -92,7 +92,7 @@ def questions_create():
         form.category.data,
         form.correct.data,
         form.date.data,
-        current_user.team_id)
+        current_user.representive_team_id)
 
     db.session().add(q)
     db.session().commit()
