@@ -17,4 +17,10 @@
     </tr>
     {% endfor %}
   </table>
+  <br>
+  <p>Clear whole database (including users, teams and questions):<br>
+    <form method="POST" action="{{ url_for('questions_all') }}">
+      <input type="submit" value="DESTROY">
+    </form>
+  (ADMIN account will be unaffected)</p>
 {% endblock %}
