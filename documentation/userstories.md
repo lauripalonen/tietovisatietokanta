@@ -1,6 +1,5 @@
 # User stories
-User storyt kuvaavat sovelluksen käyttötapauksia. Alla on lueteltu oleellisia tapauksia, joita valmiin sovelluksen on
-suunniteltu kattavan.
+User storyt kuvaavat sovelluksen käyttötapauksia. Alla on lueteltu oleellisia tapauksia, joita valmis sovellus toteuttaa.
 
 ### Käyttäjä & kirjautuminen  
 - Sovellukseen voi luoda oman käyttäjätilin  
@@ -21,5 +20,4 @@ suunniteltu kattavan.
   - montako prosenttia kysymyksistä on mennyt oikein valittuna ajankohtana.
   
 ### Keskeneräiset käyttötapaukset
-- Kysymyslistan suodatus  
-- Yhteenvedot (vaikein kysymyskategoria on toiminnassa)
+- Kysymyslistan suodatus
