@@ -33,8 +33,6 @@ class Question(db.Model):
 
         res = db.engine.execute(stmt)
 
-        print("RESPONSE FOR QUERY: " + res)
-
         response = []
         for row in res:
             response.append({"count: ":row[0]})
@@ -62,5 +60,9 @@ class Question(db.Model):
         ResultSet = ResultProxy.fetchone()
         avg = ResultSet[0]*100
         cat = ResultSet[1]
-        
-        return "{} ({} {} correct answers).".format(cat, avg, "%")
+
+        if avg == 100:
+            return "Your team has answered correctly to every question so far. Well done!"
+
+        else: 
+            return "Most difficult category: {} ({} {} correct answers).".format(cat, avg, "%")
