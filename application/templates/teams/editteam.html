@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<table>
+  <tr>
+    <td>
+      <form method="POST" action="{{ url_for('teams_edit', team_id=team.id) }}">
+        {{ form.team_name(value=team.name) }}
+        <input type="submit" name="btn" value="Set as representive" />
+        <input type="submit" name="btn" value="Change name" />
+      </form>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <form method="POST" action="{{ url_for('teams_edit', team_id=team.id) }}">
+        <input type="submit" name="btn" value="Remove from my teams" />
+      </form>
+    </td>
+  </tr>
+</table>
+{% endblock %}
