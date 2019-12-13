@@ -37,9 +37,9 @@ def questions_all():
         db.session().commit()
         user_team.clear_table()
         db.session().commit()
-        db.session().query(Team).filter(Team.name != 'team_admin').delete()
-        db.session().commit()
         db.session().query(User).filter(User.username != 'ADMIN').delete()
+        db.session().commit()
+        db.session().query(Team).filter(Team.name != 'team_admin').delete()
         db.session().commit()
         return redirect(url_for("index"))
 
