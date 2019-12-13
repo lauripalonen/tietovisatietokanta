@@ -126,5 +126,6 @@ dmypy.json
 
 # other
 documentation/uml-url
+documentation/uml-schema.txt
 quizlog.db
 .vscode/
