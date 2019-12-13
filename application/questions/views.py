@@ -1,10 +1,11 @@
 from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 
-from application import app, db, login_required
+from application import app, db, login_required, user_team
 from application.questions.models import Question
 from application.questions.forms import QuestionForm, EditForm
 
+from application.auth.models import User
 from application.teams.models import Team
 
 
@@ -23,11 +24,24 @@ def questions_index():
     return redirect(url_for("index"))
 
 
-@app.route("/questions/all/", methods=["GET"])
+@app.route("/questions/all/", methods=["GET", "POST"])
 @login_required(role="ADMIN")
 def questions_all():
     questions = Question.query.order_by(Question.quiz_date.desc()).all()
-    return render_template("questions/all.html", questions=questions)
+
+    if request.method == "GET":
+        return render_template("questions/all.html", questions=questions)
+
+    if request.method == "POST":
+        Question.query.delete()
+        db.session().commit()
+        user_team.clear_table()
+        db.session().commit()
+        db.session().query(Team).filter(Team.name != 'team_admin').delete()
+        db.session().commit()
+        db.session().query(User).filter(User.username != 'ADMIN').delete()
+        db.session().commit()
+        return redirect(url_for("index"))
 
 
 @app.route("/questions/new/")
