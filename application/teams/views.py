@@ -88,8 +88,8 @@ def teams_edit(team_id):
             user = User.query.filter_by(id=current_user.id).first()
 
             if (user.team_id == int(team_id)):
-                print("Another team most be first chosen as representive")
-                return render_template("/teams/editteam.html", team=team, form=form)
+                errorMsg = "Cannot remove representive team. Set another team as reprsentive team first."
+                return render_template("/teams/editteam.html", team=team, form=form, error=errorMsg)
 
             else:
                 user.remove_team(team_id)
