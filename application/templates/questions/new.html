@@ -30,6 +30,9 @@
     {% for error in form.answer.errors %}
     <li>{{ error }}</li>
     {% endfor %}
+    {% for error in form.category.errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
   </ul>
 </form>
 {% endblock %}
