@@ -63,6 +63,10 @@ def edit_form(question_id):
 def questions_update(question_id):
     q = Question.query.get(question_id)
     form = EditForm(request.form)
+    c = "checked" if q.answered_correctly == True else ""
+
+    if not form.validate():
+        return render_template("questions/edit.html", question=q, checked=c, form=form)
 
     q.question = form.question.data
     q.answer = form.answer.data
