@@ -56,6 +56,14 @@ class User(db.Model):
 
         return response[0]
 
+    def remove_team(self, team_id):
+        stmt = text("DELETE FROM user_team WHERE user_id = :user_id AND team_id = :team_id").params(user_id=self.id, team_id = team_id)
+
+        db.engine.execute(stmt)
+        print("trying to remove team...")
+
+        return print("team removed")
+
 class Role(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
