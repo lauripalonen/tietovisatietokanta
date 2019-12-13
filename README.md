@@ -43,7 +43,7 @@ ADMIN-tunnuksilla voi tarkastella normaalikäyttäjästä poikkeavia admin-toimi
 ## Käyttöohje  
 
 ### kirjautuminen
-Heroku-sovelluksessa pääsee kirjautumaan tai rekisteröitymään ylänavigaatiopalkin Login tai Sign up -napeista.  Sovelluksessa olemassa olevat tunnukset on listattu kohdassa **Testitunnukset**
+Heroku-sovelluksessa pääsee kirjautumaan tai rekisteröitymään ylänavigaatiopalkin Login tai Sign up -napeista.  Sovelluksessa olemassa olevat tunnukset on listattu aiemmin kohdassa **Testitunnukset**.
 
 Uudet käyttäjät lisäävät itselleen joukkueen, tai liittyvät jo olemassa olevaan kirjoittamalla joukkueen nimen rekisteröitymisnäkymän Team-kenttään. Tämän jälkeen kaikki kysymykset jotka käyttäjä lisää, yhdistetään käyttäjän joukkueeseen.  
 
