@@ -73,6 +73,10 @@ INSERT INTO Team (name) VALUES (?);
 INSERT INTO user_team (user_id, team_id) VALUES (?, ?);
 UPDATE Account SET representive_team_id = ?;
 ``` 
+#### joukkueen poistaminen käyttäjän joukkueista:
+```
+DELETE FROM user_team WHERE user_id = ? AND team_id = ?
+```
 #### tietovisakysymyksen lisäys, muokkaus ja poisto
 ```
 INSERT INTO Question (question, answer, answered_correctly, category, quiz_date)  
