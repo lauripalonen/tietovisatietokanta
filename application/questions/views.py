@@ -28,9 +28,10 @@ def questions_index():
 @login_required(role="ADMIN")
 def questions_all():
     questions = Question.query.order_by(Question.quiz_date.desc()).all()
+    best_team = Team.find_team_with_most_correct_answers()
 
     if request.method == "GET":
-        return render_template("questions/all.html", questions=questions)
+        return render_template("questions/all.html", questions=questions, best_team=best_team)
 
     if request.method == "POST":
         Question.query.delete()

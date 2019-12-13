@@ -2,6 +2,7 @@ from application import db
 from application import user_team
 from application.auth.models import User
 from sqlalchemy.sql import text
+import os
 
 class Team(db.Model):
 
@@ -34,3 +35,27 @@ class Team(db.Model):
         
 
         return response
+
+    @staticmethod
+    def find_team_with_most_correct_answers():
+        if os.environ.get("HEROKU"):
+            stmt = text("SELECT name, AVG(answered_correctly::int::float4)"
+                        " AS avg FROM Team JOIN Question ON question.team_id = team.id"
+                        " GROUP BY name ORDER BY avg DESC limit 1")
+
+        else: 
+            stmt = text("SELECT name, AVG(answered_correctly) AS avg"
+                        " FROM Team JOIN Question ON question.team_id = team.id"
+                        " GROUP BY team.name ORDER BY avg DESC limit 1")
+
+        ResultProxy = db.engine.execute(stmt)
+
+        ResultSet = ResultProxy.fetchone()
+
+        if ResultSet == None:
+            return ""
+
+        team = ResultSet[0]
+        avg = ResultSet[1]*100
+        
+        return "Team with highest average of correct answers ({}{}): {}".format(avg, "%", team)
