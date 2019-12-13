@@ -27,13 +27,15 @@ ADMIN-tunnuksilla voi tarkastella normaalikäyttäjästä poikkeavia admin-toimi
 ## Toiminnot
 [User stories](/documentation/userstories.md) -dokumentissa on kuvattu sovelluksen suunnitellut toiminnallisuudet. Jo julkaistuja toimintoja:  
 - sisään- ja uloskirjautuminen, sekä rekisteröityminen
-- uuden tiimin luominen tai olemassa olevaan liittyminen (rekisteröitymislomakkeella)
+- uuden tiimin luominen tai olemassa olevaan liittyminen
 - kysymysten luonti, editointi ja poisto
 - kysymysten listaaminen (aikajärjestyksessä)
-- Tiimin vaikeimman kysymyskategorian näyttö (toiminto ei tällä hetkellä toimi odotesti Herokussa)
-- Admin-ominaisuus: kaikkien joukkueiden kysymysten näyttö
+- Tiimin vaikeimman kysymyskategorian näyttö
 - Edustamansa joukkueen näyttö sovelluksen navigointipalkin alla  
 - Useamman joukkueen lisäys yhdelle käyttäjälle
+- Admin-ominaisuus: kaikkien kysymysten näyttö
+- Admin-ominaisuus: tietokannan tuhoaminen
+- Admin-ominaisuus: menestyneimmän joukkueen näyttö
 
 ## Käyttöohje  
 
