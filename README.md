@@ -11,9 +11,12 @@ Heroku-julkaisu:  https://quizlog.herokuapp.com
 
 ## Dokumentaatio
 [Tietokantakaavio](/documentation/uml-chart.png)  
-[User stories](/documentation/userstories.md)
+[SQL-kyselyt](/documentation/SQL-kyselyt.md)  
+[User stories](/documentation/userstories.md)  
+[Jatkokehitys](/documentation/jatkokehitys.md)  
 
-## <a id="tunnukset"></a>Testitunnukset
+
+## Testitunnukset
 Heroku-sovellukseen pääsee kirjautumaan seuraavilla tunnuksilla:    
 
 | username | password |
@@ -25,9 +28,9 @@ Heroku-sovellukseen pääsee kirjautumaan seuraavilla tunnuksilla:
 ADMIN-tunnuksilla voi tarkastella normaalikäyttäjästä poikkeavia admin-toimintoja.
 
 ## Toiminnot
-[User stories](/documentation/userstories.md) -dokumentissa on kuvattu sovelluksen suunnitellut toiminnallisuudet. Jo julkaistuja toimintoja:  
+[User stories](/documentation/userstories.md) -dokumentissa on kuvattu sovelluksen suunnitellut toiminnallisuudet. [Jatkokehitys](/documentation/jatkokehitys.md) -dokumentissa on avattu tämän hetkisen julkaisun puutteita, ja niille esitettyjä jatkokehitysideoita. Jo julkaistuja toimintoja:  
 - sisään- ja uloskirjautuminen, sekä rekisteröityminen
-- uuden tiimin luominen tai olemassa olevaan liittyminen
+- uuden tiimin luominen, olemassa olevaan liittyminen tai tiimistä poistuminen
 - kysymysten luonti, editointi ja poisto
 - kysymysten listaaminen (aikajärjestyksessä)
 - Tiimin vaikeimman kysymyskategorian näyttö
