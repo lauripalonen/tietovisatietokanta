@@ -52,9 +52,15 @@
 
   <main role="main" class="container">
     {% if current_user.is_authenticated %}
+    {% if current_user.get_team() == None %}
+    <div>
+      <p><strong>Warning! You are not currently representing any team. Please add a team before creating new questions.</strong></p>
+    </div>
+    {% else %}
     <div>
       <p><strong>Representing team "{{ current_user.get_team() }}"</strong></p>
     </div>
+    {% endif %}
     {% endif %}
     {% block body %}
     <p>
