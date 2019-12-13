@@ -17,7 +17,7 @@ User storyt kuvaavat sovelluksen käyttötapauksia. Alla on lueteltu oleellisia 
 - Kysymyslistaa voi suodattaa kategorian tai ajankohdan perusteella
 - Listasta voi laatia mm. seuraavia yhteenvetoja:
   - vaikein kysymyskategoria
-  - montako prosenttia kysymyksistä on mennyt oikein valittuna ajankohtana.
+  - menestynein joukkue
   
 ### Keskeneräiset käyttötapaukset
 - Kysymyslistan suodatus
