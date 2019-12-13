@@ -3,7 +3,7 @@ from wtforms import StringField, BooleanField, validators
 from wtforms.fields.html5 import DateField
 
 errMsgQ = "Question must be between 2 to 144 characters long"
-errMsgA = "Answer field cannot be empty"
+errMsgA = "Answer must be between 1 to 144 characters long"
 errMsgC = "Category must between 3 to 50 characters long"
 
 class QuestionForm(FlaskForm):
