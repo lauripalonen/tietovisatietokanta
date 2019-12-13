@@ -4,21 +4,25 @@
 {% if not questions %}
 <p>No questions added yet.</p>
 {% else %}
-<table>
-  <tr>
-    <td><strong>Question</strong></td>
-    <td><strong>Answer</strong></td>
-    <td><strong>Category</strong></td>
-    <td><strong>Date</strong></td>
-  </tr>
-  {% for question in questions %}
-  <tr>
-    <td>{{ question.question }}</td>
-    <td>{{ question.answer }}</td>
-    <td>{{ question.category }}</td>
-    <td>{{ question.quiz_date }}</td>
-  </tr>
-  {% endfor %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Answer</th>
+      <th>Category</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for question in questions %}
+    <tr>
+      <td>{{ question.question }}</td>
+      <td>{{ question.answer }}</td>
+      <td>{{ question.category }}</td>
+      <td>{{ question.quiz_date }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 <br>
 {% endif %}
@@ -27,7 +31,7 @@
   <form method="POST" action="{{ url_for('questions_all') }}">
     <input type="submit" value="DESTROY"
       onClick='return confirm("All data except ADMIN account will be deleted. Are you sure?")'>
-      (ADMIN account will be unaffected)
+    (ADMIN account will be unaffected)
   </form>
 </div>
 </p>

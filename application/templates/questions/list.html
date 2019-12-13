@@ -2,14 +2,17 @@
 
 {% block body %}
 <p>{{ hardest_category }}</p>
-  <table>
+  <table class="table table-striped">
+    <thead>
     <tr>
-      <td><strong>Question</strong></td>
-      <td><strong>Answer</strong></td>
-      <td><strong>Category</strong></td>
-      <td><strong>Answered correctly</strong></td>
-      <td><strong>Date</strong></td>
+      <th>Question</th>
+      <th>Answer</th>
+      <th>Category</th>
+      <th>Answered correctly</th>
+      <th>Date</th>
     </tr>
+  </thead>
+  <tbody>
     {% for question in questions %}
     <tr>
       <td>{{ question.question }}</td>
@@ -24,5 +27,6 @@
       </td>
     </tr>
     {% endfor %}
+  </tbody>
   </table>
 {% endblock %}
