@@ -73,6 +73,11 @@ INSERT INTO Team (name) VALUES (?);
 INSERT INTO user_team (user_id, team_id) VALUES (?, ?);
 UPDATE Account SET representive_team_id = ?;
 ``` 
+### käyttäjän joukkueiden listaaminen:
+```
+SELECT name FROM Team JOIN user_team ON Team.id = user_team.team_id  
+WHERE user_team.user_id = ?;
+```
 #### joukkueen poistaminen käyttäjän joukkueista:
 ```
 DELETE FROM user_team WHERE user_id = ? AND team_id = ?
